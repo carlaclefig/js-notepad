@@ -3,7 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="this web side allow to create, adit and delete note."
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="assets/js/scrip.js"></script>
+    <link rel="icon" href="assets/images/note.icon.png" type="png" />
     <title>Notepad</title>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h1>NOTEPAD</h1>
+      <p>Create your custom notes</p>
+    </header>
+    <main>
+      <form action="">
+        <label>
+          Title:
+          <input type="text" name="title" placeholder="My shopping list" />
+        </label>
+        <label>
+          Write the content:
+          <textarea
+            name="content"
+            placeholder="1. Milk
+2. Tomato
+3. Onion"
+          ></textarea>
+        </label>
+        <label>
+          Choose a color for your note
+          <input type="color" name="color" />
+        </label>
+        <button>Save</button>
+      </form>
+      <section>
+        <article class="note">
+          <header>
+            <h3 class="note__title">My shopping list</h3>
+          </header>
+          <section>
+            <p class="note__content">
+              a. Milk
+              <br />
+              b. Tomato
+              <br />
+              c. Onion
+            </p>
+          </section>
+          <footer>
+            <time class="note__creation-date"> Creation date:01/07/2024 </time>
+            <time class="note__update-date"> Update date: 06/07/2024 </time>
+          </footer>
+        </article>
+      </section>
+    </main>
+  </body>
 </html>
