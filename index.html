@@ -13,12 +13,12 @@
     <title class="">Notepad</title>
   </head>
   <body>
-    <header class="header">
-      <h1 class="header__title">NOTEPAD</h1>
+    <header class="container container--flex">
+      <h1 class="title">NOTEPAD</h1>
     </header>
-    <main class="main">
+    <main class="container">
       <form class="note-creator">
-        <fieldset>
+        <fieldset class="note-creator__fieldset">
           <legend class="note-creator__instructions">
             Create your custom notes
           </legend>
@@ -38,9 +38,9 @@
               required
               name="content"
               placeholder="1. Milk
-  2. Tomato
-  3. Onion"
-              class="note-creator_input-content"
+2. Tomato
+3. Onion"
+              class="note-creator_textarea-content"
             ></textarea>
           </label>
           <label class="note-creator__label-color">
@@ -76,6 +76,6 @@
         </article>
       </section>
     </main>
-    <footer class="footer">Build by: Carla Clemente</footer>
+    <footer class="container">Build by: Carla Clemente</footer>
   </body>
 </html>
