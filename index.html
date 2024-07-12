@@ -16,10 +16,10 @@
       <h1 class="title">NOTEPAD</h1>
     </header>
     <main class="container">
-      <form class="note-creator" id="note-creator" onsubmit="handlerSubmit">
+      <form class="note-creator" id="note-creator">
         <fieldset class="note-creator__fieldset">
           <legend class="note-creator__instructions">Create your notes</legend>
-          <label class="note-creator__label-content">
+          <label>
             <textarea
               required
               name="content"
@@ -31,15 +31,17 @@
         </fieldset>
       </form>
       <section class="notes-list" id="notes-list">
-        <article class="note">
+        <!-- <article class="note">
           <section>
             <p class="note__content">Meeting at 4:00 p.m.</p>
           </section>
           <button class="note__delete-btn">Delete</button>
-        </article>
+        </article> -->
       </section>
     </main>
-    <footer class="container">Build by: Carla Clemente</footer>
+    <footer class="container">
+      <small class="author">By: Carla Clemente </small>
+    </footer>
     <script src="assets/js/script.js"></script>
   </body>
 </html>

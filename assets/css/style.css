@@ -40,11 +40,8 @@ body {
   border-radius: 16px;
 }
 
-.note-creator__label-content {
-  display: block;
-  color: var(--text-100);
-  margin-bottom: 10px;
-  font-size: 20px;
+.note-creator__instructions {
+  font-size: 18px;
 }
 
 .note-creator__textarea-content {
@@ -107,4 +104,9 @@ body {
 .note__delete-btn:hover {
   background-color: var(--bg-300);
   outline: 1px solid var(--primary-200);
+}
+
+.author {
+  display: block;
+  text-align: center;
 }

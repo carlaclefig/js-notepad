@@ -1,4 +1,10 @@
-const noteArray = [];
+let notesArray = [];
+
+const savedNotes = JSON.parse(localStorage.getItem("notes")); // convert string to array
+
+if (savedNotes !== null) {
+  notesArray = notesArray.concat(savedNotes);
+}
 
 const notesListHtml = document.getElementById("notes-list");
 const noteCreatorHtml = document.getElementById("note-creator");
@@ -24,21 +30,21 @@ function createNoteHtml(content) {
   return noteHtml;
 }
 
-function handlerSubmit(event) {
+noteCreatorHtml.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const elements = event.target.elements;
 
   const inputContentHtml = elements.content;
 
-  noteArray.push(inputContentHtml.value);
+  notesArray.push(inputContentHtml.value);
+
+  localStorage.setItem("notes", JSON.stringify(notesArray)); // convert array to string
 
   addNoteToScreen(inputContentHtml.value);
 
   inputContentHtml.value = "";
-}
-
-noteCreatorHtml.addEventListener("submit", handlerSubmit);
+});
 
 function addNoteToScreen(content) {
   const noteHtml = createNoteHtml(content);
@@ -46,7 +52,7 @@ function addNoteToScreen(content) {
 }
 
 function loadNotesToScreen() {
-  for (const note of noteArray) {
+  for (const note of notesArray) {
     const noteHtml = createNoteHtml(note);
     notesListHtml.append(noteHtml);
   }
