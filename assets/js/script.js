@@ -10,31 +10,37 @@ if (savedNotes !== null) {
 const notesListHtml = document.getElementById("notes-list");
 const noteCreatorHtml = document.getElementById("note-creator");
 
-function createNoteHtml(content) {
+function createNoteHtml(noteContent) {
   const noteHtml = document.createElement("article");
   noteHtml.classList.add("note");
 
-  const noteSection = document.createElement("section");
+  const noteSectionHtml = document.createElement("section");
 
-  const noteContent = document.createElement("p");
-  noteContent.classList.add("note__content");
-  noteContent.innerText = content;
+  const noteContentHtml = document.createElement("p");
+  noteContentHtml.classList.add("note__content");
+  noteContentHtml.innerText = noteContent;
 
-  noteSection.append(noteContent);
+  noteSectionHtml.append(noteContentHtml);
 
-  const noteButton = document.createElement("button"); // <button></button>
-  noteButton.classList.add("note__delete-btn"); //  <button class="note__delete-btn"></button>
-  noteButton.innerText = "Delete"; //  <button class="note__delete-btn">Delete</button>
+  const deleteButtonHtml = document.createElement("button"); // <button></button>
+  deleteButtonHtml.classList.add("note__delete-btn"); //  <button class="note__delete-btn"></button>
+  deleteButtonHtml.innerText = "Delete"; //  <button class="note__delete-btn">Delete</button>
 
-  noteButton.addEventListener("click", function (_event) {
+  deleteButtonHtml.addEventListener("click", function (event) {
+    event.preventDefault();
+
     notesArray = notesArray.filter(function (element) {
-      return element !== content;
+      return element !== noteContent;
     });
+
+    const notesString = JSON.stringify(notesArray); // convert array to string
+
+    localStorage.setItem("notes", notesString); // save in locale storage
 
     loadNotesToScreen();
   });
 
-  noteHtml.append(noteSection, noteButton);
+  noteHtml.append(noteSectionHtml, deleteButtonHtml);
 
   return noteHtml;
 }

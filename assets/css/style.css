@@ -64,6 +64,7 @@ body {
   font-size: 18px;
   padding: 8px 16px;
   font-weight: 600;
+  margin-top: 8px;
 }
 
 .note-creator__save-btn:hover {
