@@ -18,53 +18,25 @@
     <main class="container">
       <form class="note-creator" id="note-creator" onsubmit="handlerSubmit">
         <fieldset class="note-creator__fieldset">
-          <legend class="note-creator__instructions">
-            Create your custom notes
-          </legend>
-          <label class="note-creator__label-title">
-            Title:
-            <input
-              required
-              type="text"
-              name="title"
-              placeholder="My shopping list"
-              class="note-creator__input-title"
-            />
-          </label>
+          <legend class="note-creator__instructions">Create your notes</legend>
           <label class="note-creator__label-content">
-            Write the content:
             <textarea
               required
               name="content"
-              placeholder="1. Milk
-2. Tomato
-3. Onion"
-              class="note-creator_textarea-content"
+              placeholder="Something to remember"
+              class="note-creator__textarea-content"
             ></textarea>
-          </label>
-          <label class="note-creator__label-color">
-            Choose a color for your note:
-            <input
-              req
-              type="color"
-              name="color"
-              class="note-creator__input-color"
-              value="#EABAED"
-            />
           </label>
           <button class="note-creator__save-btn">Save</button>
         </fieldset>
       </form>
       <section class="notes-list" id="notes-list">
-        <!-- <article class="note">
-          <header>
-            <h3 class="note__title">My shopping list</h3>
-          </header>
+        <article class="note">
           <section>
-            <p class="note__content">a. Milk b. Tomato c. Onion</p>
+            <p class="note__content">Meeting at 4:00 p.m.</p>
           </section>
           <button class="note__delete-btn">Delete</button>
-        </article> -->
+        </article>
       </section>
     </main>
     <footer class="container">Build by: Carla Clemente</footer>
