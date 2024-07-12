@@ -8,12 +8,11 @@
       content="This website allow to create, adit and delete notes."
     />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <script src="assets/js/script.js"></script>
     <link rel="icon" href="assets/images/note.icon.png" type="png" />
     <title class="">Notepad</title>
   </head>
   <body>
-    <header class="container container--flex">
+    <header class="container">
       <h1 class="title">NOTEPAD</h1>
     </header>
     <main class="container">
@@ -44,7 +43,7 @@
             ></textarea>
           </label>
           <label class="note-creator__label-color">
-            Choose a color for your note
+            Choose a color for your note:
             <input
               req
               type="color"
@@ -55,27 +54,19 @@
           <button class="note-creator__save-btn">Save</button>
         </fieldset>
       </form>
-      <section class="section">
-        <article class="note">
+      <section class="notes-list" id="notes-list">
+        <!-- <article class="note">
           <header>
             <h3 class="note__title">My shopping list</h3>
           </header>
           <section>
-            <p class="note__content">
-              a. Milk
-              <br />
-              b. Tomato
-              <br />
-              c. Onion
-            </p>
+            <p class="note__content">a. Milk b. Tomato c. Onion</p>
           </section>
-          <footer>
-            <time class="note__creation-date"> Creation date:01/07/2024 </time>
-            <time class="note__update-date"> Update date: 06/07/2024 </time>
-          </footer>
-        </article>
+          <button class="note__delete-btn">Delete</button>
+        </article> -->
       </section>
     </main>
     <footer class="container">Build by: Carla Clemente</footer>
+    <script src="assets/js/script.js"></script>
   </body>
 </html>
