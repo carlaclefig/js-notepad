@@ -1,9 +1,10 @@
 let notesArray = [];
 
-const savedNotes = JSON.parse(localStorage.getItem("notes")); // convert string to array
+const savedNotesString = localStorage.getItem("notes"); // read from locale storage
+const savedNotes = JSON.parse(savedNotesString); // convert string to array
 
 if (savedNotes !== null) {
-  notesArray = notesArray.concat(savedNotes);
+  notesArray = notesArray.concat(savedNotes); // add savedNotes to notesArray
 }
 
 const notesListHtml = document.getElementById("notes-list");
@@ -25,6 +26,14 @@ function createNoteHtml(content) {
   noteButton.classList.add("note__delete-btn"); //  <button class="note__delete-btn"></button>
   noteButton.innerText = "Delete"; //  <button class="note__delete-btn">Delete</button>
 
+  noteButton.addEventListener("click", function (_event) {
+    notesArray = notesArray.filter(function (element) {
+      return element !== content;
+    });
+
+    loadNotesToScreen();
+  });
+
   noteHtml.append(noteSection, noteButton);
 
   return noteHtml;
@@ -37,21 +46,26 @@ noteCreatorHtml.addEventListener("submit", function (event) {
 
   const inputContentHtml = elements.content;
 
+  if (notesArray.includes(inputContentHtml.value)) {
+    window.alert("This content already exists");
+
+    return;
+  }
+
   notesArray.push(inputContentHtml.value);
 
-  localStorage.setItem("notes", JSON.stringify(notesArray)); // convert array to string
+  const notesString = JSON.stringify(notesArray); // convert array to string
 
-  addNoteToScreen(inputContentHtml.value);
+  localStorage.setItem("notes", notesString); // save in locale storage
+
+  loadNotesToScreen();
 
   inputContentHtml.value = "";
 });
 
-function addNoteToScreen(content) {
-  const noteHtml = createNoteHtml(content);
-  notesListHtml.append(noteHtml);
-}
-
 function loadNotesToScreen() {
+  notesListHtml.innerHTML = "";
+
   for (const note of notesArray) {
     const noteHtml = createNoteHtml(note);
     notesListHtml.append(noteHtml);
