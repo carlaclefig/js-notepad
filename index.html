@@ -16,7 +16,7 @@
       <h1 class="title">NOTEPAD</h1>
     </header>
     <main class="container">
-      <form class="note-creator">
+      <form class="note-creator" id="note-creator" onsubmit="handlerSubmit">
         <fieldset class="note-creator__fieldset">
           <legend class="note-creator__instructions">
             Create your custom notes
@@ -49,6 +49,7 @@
               type="color"
               name="color"
               class="note-creator__input-color"
+              value="#EABAED"
             />
           </label>
           <button class="note-creator__save-btn">Save</button>
