@@ -10,6 +10,7 @@
   --bg-200: #dcd6f7;
   --bg-300: #bbb9e9;
 }
+
 * {
   box-sizing: border-box;
 }
@@ -69,7 +70,7 @@ body {
 
 .note-creator__save-btn:hover {
   background-color: var(--accent-200);
-  outline: 1px solid var(--accent-100);
+  outline: 2px solid var(--accent-100);
   width: 100%;
 }
 
@@ -79,8 +80,6 @@ body {
   border-radius: 16px;
   margin-bottom: 16px;
   padding: 16px;
-  display: flex;
-  flex-direction: column;
 }
 
 .note__content {
@@ -96,15 +95,16 @@ body {
   margin-top: 16px;
   padding: 4px 16px;
   width: fit-content;
-  align-self: end;
   font-weight: 600;
   font-size: 18px;
   font-family: inherit;
+  display: block;
+  margin-left: auto;
 }
 
 .note__delete-btn:hover {
   background-color: var(--bg-300);
-  outline: 1px solid var(--primary-200);
+  outline: 2px solid var(--primary-200);
 }
 
 .author {

@@ -1,81 +1,77 @@
-let notesArray = [];
+let notasGuardadas = [];
 
-const savedNotesString = localStorage.getItem("notes"); // read from locale storage
-const savedNotes = JSON.parse(savedNotesString); // convert string to array
+const notasGuardadasEnString = localStorage.getItem("notas");
+const notasGuardadasEnArray = JSON.parse(notasGuardadasEnString);
 
-if (savedNotes !== null) {
-  notesArray = notesArray.concat(savedNotes); // add savedNotes to notesArray
+if (notasGuardadasEnArray !== null) {
+  notasGuardadas = notasGuardadas.concat(notasGuardadasEnArray);
 }
 
-const notesListHtml = document.getElementById("notes-list");
-const noteCreatorHtml = document.getElementById("note-creator");
+const creadorDeNotasHtml = document.querySelector(".note-creator");
+const listaDeNotasHtml = document.querySelector(".notes-list");
 
-function createNoteHtml(noteContent) {
-  const noteHtml = document.createElement("article");
-  noteHtml.classList.add("note");
+function crearNota(contenidoDeLaNota) {
+  const notaHtml = document.createElement("article");
+  notaHtml.classList.add("note");
 
-  const noteSectionHtml = document.createElement("section");
+  const seccionDeNotaHtml = document.createElement("section");
+  const contenidoDeNotaHtml = document.createElement("p");
+  contenidoDeNotaHtml.classList.add("note__content");
+  contenidoDeNotaHtml.innerText = contenidoDeLaNota;
 
-  const noteContentHtml = document.createElement("p");
-  noteContentHtml.classList.add("note__content");
-  noteContentHtml.innerText = noteContent;
+  seccionDeNotaHtml.append(contenidoDeNotaHtml);
 
-  noteSectionHtml.append(noteContentHtml);
+  const botonEliminarHtml = document.createElement("button");
+  botonEliminarHtml.classList.add("note__delete-btn");
+  botonEliminarHtml.innerText = "Borrar";
 
-  const deleteButtonHtml = document.createElement("button"); // <button></button>
-  deleteButtonHtml.classList.add("note__delete-btn"); //  <button class="note__delete-btn"></button>
-  deleteButtonHtml.innerText = "Delete"; //  <button class="note__delete-btn">Delete</button>
+  botonEliminarHtml.addEventListener("click", function (evento) {
+    evento.preventDefault();
 
-  deleteButtonHtml.addEventListener("click", function (event) {
-    event.preventDefault();
-
-    notesArray = notesArray.filter(function (element) {
-      return element !== noteContent;
+    const notasFiltradas = notasGuardadas.filter(function (elemento) {
+      return elemento !== contenidoDeLaNota;
     });
 
-    const notesString = JSON.stringify(notesArray); // convert array to string
+    notasGuardadas = notasFiltradas;
+    const stringNotas = JSON.stringify(notasGuardadas);
+    localStorage.setItem("notas", stringNotas);
 
-    localStorage.setItem("notes", notesString); // save in locale storage
-
-    loadNotesToScreen();
+    cargarNotasEnPantalla();
   });
 
-  noteHtml.append(noteSectionHtml, deleteButtonHtml);
+  notaHtml.append(seccionDeNotaHtml, botonEliminarHtml);
 
-  return noteHtml;
+  return notaHtml;
 }
 
-noteCreatorHtml.addEventListener("submit", function (event) {
+creadorDeNotasHtml.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const elements = event.target.elements;
+  const textAreaHtml = elements.noteContent;
 
-  const inputContentHtml = elements.content;
-
-  if (notesArray.includes(inputContentHtml.value)) {
-    window.alert("This content already exists");
+  if (notasGuardadas.includes(textAreaHtml.value)) {
+    window.alert("Este contenido ya existe");
 
     return;
   }
 
-  notesArray.push(inputContentHtml.value);
+  notasGuardadas.push(textAreaHtml.value);
+  const stringNotas = JSON.stringify(notasGuardadas);
+  localStorage.setItem("notas", stringNotas);
 
-  const notesString = JSON.stringify(notesArray); // convert array to string
+  cargarNotasEnPantalla();
 
-  localStorage.setItem("notes", notesString); // save in locale storage
-
-  loadNotesToScreen();
-
-  inputContentHtml.value = "";
+  textAreaHtml.value = "";
 });
 
-function loadNotesToScreen() {
-  notesListHtml.innerHTML = "";
+function cargarNotasEnPantalla() {
+  listaDeNotasHtml.innerHTML = "";
 
-  for (const note of notesArray) {
-    const noteHtml = createNoteHtml(note);
-    notesListHtml.append(noteHtml);
+  for (const nota of notasGuardadas) {
+    const notaHtml = crearNota(nota);
+    listaDeNotasHtml.append(notaHtml);
   }
 }
 
-loadNotesToScreen();
+cargarNotasEnPantalla();
